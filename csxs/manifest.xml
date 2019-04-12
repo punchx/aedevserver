@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- 1) -->
 <ExtensionManifest ExtensionBundleId="AeDevServer" ExtensionBundleVersion="1.0.0" Version="7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <!-- 2) -->
     <Extension Id="com.ae.aedevserver.panel" Version="1.0.0" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>
-      <!-- 3) -->
       <Host Name="AEFT" Version="[16.0,99.9]" />
     </HostList>
     <LocaleList>
@@ -18,7 +15,6 @@
     </RequiredRuntimeList>
   </ExecutionEnvironment>
   <DispatchInfoList>
-    <!-- 2) -->
     <Extension Id="com.ae.aedevserver.panel">
       <DispatchInfo>
         <Resources>
@@ -34,11 +30,9 @@
         </Lifecycle>
         <UI>
           <Type>Panel</Type>
-          <!-- 6) -->
           <Menu>AeDevServer</Menu>
           <Geometry>
             <Size>
-              <!-- 7) -->
               <Height>200</Height>
               <Width>600</Width>
             </Size>

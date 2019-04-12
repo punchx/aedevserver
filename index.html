@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <head>
 	<meta charset="UTF-8">
 	<title>AeDev Server</title>
 </head>
 <body>
-	<script>
-		// var require = (window.cep_node && window.cep_node.require) || window.require || function () {};
-		// var tcpServer = require(__dirname + '\\js\\server.js');
-	</script>
-	<div calss="btn-container">
+	<form>
+		<label for="port-input">Enter a port number:</label>
+		<input id="port-input" type="text" name="port">
+	</form>
+	<div class="btn-container">
 		<button id="start">Start Server</button>
 		<button id="stop">Stop Server</button>
 	</div>
+	<div class="line"></div>
 	<span id="info">info text here</span>
 	<script src="./js/CSInterface.js"></script>
 	<script src="./js/main.js"></script>

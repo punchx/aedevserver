@@ -1,5 +1,7 @@
 var net = require('net');
-var buffered = '';
+
+
+let buffered = '';
 
 var client = new net.Socket();
 client.connect(1337, '127.0.0.1', function() {
