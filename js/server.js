@@ -1,12 +1,11 @@
 const net = require('net');
-const port = 1337;
 const host = '127.0.0.1';
 var csInterface = new CSInterface();
 
 
 var tcpServer = {start, stop, write};
 
-function start() {
+function start(port) {
 	this.server = net.createServer();
 	var self = this;
 

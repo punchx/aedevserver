@@ -5,7 +5,7 @@ let buffered = '';
 
 var client = new net.Socket();
 client.connect(1337, '127.0.0.1', function() {
-	client.write('D:/jsx/hello.jsx');
+	client.write('D:\\\\jsx\\\\hello.jsx');
 });
 
 client.on('data', function(data) {

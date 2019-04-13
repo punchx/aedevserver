@@ -1,9 +1,11 @@
 body {
 	margin: 0;
 	padding: 10px 6px;
-	font-family: "Segoe UI", Tahoma, serif;
+	font-family: "Segoe UI", Tahoma, Sans-Serif;
 	color: #8a8a8a;
 	font-size: 12px;
+	font-weight: lighter;
+	line-height: 12px;
 	background-color: #232323;
 }
 
@@ -21,11 +23,13 @@ input {
 	max-width: 190px;
 	height: 22px;
 	margin-bottom: 8px;
-	padding: 2px 8px;
+	padding: 0 8px;
 	font-size: 13px;
+	font-weight: lighter;
+	line-height: 13px;
 	color: #b9b9b9;
 	border: 1px solid #313131;
-	border-radius: 3px;
+	border-radius: 4px;
 	background-color: #1d1d1d;
 }
 
