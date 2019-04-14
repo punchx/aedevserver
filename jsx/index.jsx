@@ -23,7 +23,7 @@ Console.prototype.log = function() {
 		for (;i < args.length; i++) {
 			str += ' ' + args[i] 
 		}
-	} else if (args.length == 1){
+	} else if (args.length == 1) {
 		str = args[0] == undefined ? 'undefind' : args[0].toString()
 	} else { 
 		return true;
@@ -31,6 +31,19 @@ Console.prototype.log = function() {
 	
 	this.eventObj.data = str.trim();
 	this.eventObj.dispatch();
+}
+
+Console.prototype.error = function() {
+	if(arguments.length == 0) return true;
+	var str = arguments[0] == undefined ? 'undefined' : arguments[0];
+	var args = [],
+			errStr = $.fileName + ' [line: ' + $.line + '] Error: "' + str;
+			args.push(errStr);
+	for (var i=1; i < arguments.length; i++) {
+		args.push(arguments[i]);
+	}
+	args[args.length-1] = args[args.length-1] + '"';
+	this.log.apply(this, args);
 }
 
 var externalObjectName = "PlugPlugExternalObject"; 
