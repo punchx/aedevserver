@@ -1,17 +1,17 @@
 (function(){
-	const port = 1337;
-	const input = document.getElementById('port-input');
-	const startBtn = document.getElementById('start');
-	const stopBtn = document.getElementById('stop');
-	const infoText = document.getElementById('info');
+	var port = 1337;
+	var input = document.getElementById('port-input');
+	var startBtn = document.getElementById('start');
+	var stopBtn = document.getElementById('stop');
+	var infoText = document.getElementById('info');
 
 	window.onload = function setDefPort(){
 		input.value = port;
 	}
 
-	const csInterface = new CSInterface();
-	const require = (window.cep_node && window.cep_node.require) || window.require || function () {};
-	const tcpServer = require(__dirname + '\\js\\server.js');
+	var csInterface = new CSInterface();
+	var require = (window.cep_node && window.cep_node.require) || window.require || function () {};
+	var tcpServer = require(__dirname + '\\js\\server.js');
 
 
 

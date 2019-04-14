@@ -1,39 +1,36 @@
-const net = require('net');
-const host = '127.0.0.1';
-var csInterface = new CSInterface();
-
-
-var tcpServer = {start, stop, write};
+var net = require('net'),
+		host = '127.0.0.1',
+		csInterface = new CSInterface(),
+		tcpServer = {start, stop, write};
+		
+module.exports = tcpServer;
 
 function start(port) {
 	this.server = net.createServer();
-	var self = this;
 
-	this.server.on('connection', function(socket) {
-	  socket.on('data', function(data) {
-	  	csInterface.evalScript('execScript("' + data +'");');
+	this.server.on('connection', (socket)=>{
+	  socket.on('data', (data) => {
+	  	csInterface.evalScript(`execScript(' ${data} ');`);
 	  });
 
-	  self.socket = socket;
+	  this.socket = socket;
 	});
 
-	this.server.on('error', function(err) {
+	this.server.on('error', (err) => {
 		console.log(err);
 	});
 
-	this.server.listen(port, host, function() {
+	this.server.listen(port, host, () => {
 		console.log('server listen port %s', port);
 	});
 }
 
 function stop() {
-	var self = this;
-
 	for(var key in this.sockets) {
 		this.sockets[key].destroy();
 	}
-	this.server.close(function() {
-		self.server.unref();
+	this.server.close(() => {
+		this.server.unref();
 	});
 
 }
@@ -42,4 +39,3 @@ function write(str) {
 		this.socket.write(str + '\0');
 }
 
-module.exports = tcpServer;

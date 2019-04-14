@@ -1,27 +1,51 @@
+String.prototype.trim = function() {
+  return this.replace(/^\s+|\s+$/gm,'');
+}
+
+function Console(event) {
+	this.eventObj = event;
+}
+
+Console.prototype.log = function() {
+	var args = arguments,
+		str,
+		i = 1;
+	if (args.length > 1) {
+		str = args[0].toString().replace(/%s/g, function(matches) {
+			var arg;
+			if (i >= args.length) {
+				return matches;
+			} else {
+				arg = args[i++]			
+				return  (arg == undefined) ? 'undefind' : arg;
+			}
+		});
+		for (;i < args.length; i++) {
+			str += ' ' + args[i] 
+		}
+	} else if (args.length == 1){
+		str = args[0] == undefined ? 'undefind' : args[0].toString()
+	} else { 
+		return true;
+	}
+	
+	this.eventObj.data = str.trim();
+	this.eventObj.dispatch();
+}
+
+var externalObjectName = "PlugPlugExternalObject"; 
+var mylib = new ExternalObject( "lib:" + externalObjectName );
+
 function execScript(path) {
-	function Console(event) {
-		this.eventObj = event;
-	}
-
-
-	Console.prototype.log = function(str) {
-		// var endl = (str[str.length-1] == '\r\n') ? '' : '\r\n';
-		this.eventObj.data = str.toString();
-		this.eventObj.dispatch();
-	}
-
-	var externalObjectName = "PlugPlugExternalObject"; 
-	var mylib = new ExternalObject( "lib:" + externalObjectName );
-
 	var eventObj = new CSXSEvent(); 
 	eventObj.type='consoleLog'; 
 
 	var console = new Console(eventObj);
 
 	try {
-		$.evalFile(path);
+		$.evalFile(path.trim());
 	} catch(err) {
-		console.log('Error at line [ ' + (err.line) + ' ]: "' + err.message + '"');
+		console.log(err.fileName + ' [line: ' + err.line + '] ' + err.name + ': "' + err.message + '"');
 	}
 	console.log('###End###');
 }
