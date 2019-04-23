@@ -11,13 +11,12 @@
 
 	var csInterface = new CSInterface();
 	var require = (window.cep_node && window.cep_node.require) || window.require || function () {};
-	var tcpServer = require(__dirname + '\\js\\server.js');
+	var path = require('path');
 
-
-
+	var tcpServer = require(__dirname + path.normalize('/js/server.js'));
 
 	csInterface.addEventListener("consoleLog", function(event){
-  	tcpServer.write(event.data);
+  		tcpServer.write(event.data);
 	});
 
 	startBtn.addEventListener('click',function(){
