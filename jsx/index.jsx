@@ -31,6 +31,13 @@ Console.prototype.log = function() {
 	
 	this.eventObj.data = str.trim();
 	this.eventObj.dispatch();
+	var bt = new BridgeTalk;
+	var targetApp = BridgeTalk.getSpecifier("estoolkit");
+	if(BridgeTalk.isRunning("estoolkit")) {		
+		bt.target = targetApp;
+		bt.body = "print('" + str + "')";
+		bt.send ();
+	}
 }
 
 Console.prototype.error = function() {
@@ -56,7 +63,9 @@ function execScript(path) {
 	var console = new Console(eventObj);
 
 	try {
+				
 		$.evalFile(path.trim());
+
 	} catch(err) {
 		console.log(err.fileName + ' [line: ' + err.line + '] ' + err.name + ': "' + err.message + '"');
 	}

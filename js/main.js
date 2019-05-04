@@ -12,8 +12,20 @@
 	var csInterface = new CSInterface();
 	var require = (window.cep_node && window.cep_node.require) || window.require || function () {};
 	var path = require('path');
+	try {
+		if (process.platform == 'darwin') {
+			var prevNap = require(__dirname + path.normalize('/js/libs/PrevNap'));
+		}
+	} catch(err){
+		infoText.innerHTML = err.message;
+	}
 
-	var tcpServer = require(__dirname + path.normalize('/js/server.js'));
+	try {
+		var tcpServer = require(__dirname + path.normalize('/js/server.js'));
+	} catch(err){
+		infoText.innerHTML = err.message;
+	}
+
 
 	csInterface.addEventListener("consoleLog", function(event){
   		tcpServer.write(event.data);
@@ -21,6 +33,9 @@
 
 	startBtn.addEventListener('click',function(){
 		tcpServer.start(input.value);
+		if (process.platform == 'darwin') {
+			prevNap.Disable();
+		}
 		infoText.innerHTML = 'Server is on ...';
 	});
 
